@@ -220,6 +220,14 @@ function Editor(props) {
           }
         />
       </div>
+      <InputControl
+        label="Courses"
+        value={values.courses}
+        placeholder="Enter courses studied (comma separated)"
+        onChange={(event) =>
+          setValues((prev) => ({ ...prev, courses: event.target.value }))
+        }
+      />
     </div>
   );
   const basicInfoBody = (
@@ -307,16 +315,58 @@ function Editor(props) {
       </div>
     </div>
   );
-  const summaryBody = (
+  const skillsSummaryBody = (
     <div className={styles.detail}>
-      <InputControl
-        label="Summary"
-        value={values.summary}
-        placeholder="Enter your objective/summary"
-        onChange={(event) =>
-          setValues((prev) => ({ ...prev, summary: event.target.value }))
-        }
-      />
+      <div className={styles.column}>
+        <label>Languages</label>
+        <InputControl
+          placeholder="Enter languages"
+          value={values.languages}
+          onChange={(event) =>
+            setValues((prev) => ({ ...prev, languages: event.target.value }))
+          }
+        />
+      </div>
+      <div className={styles.column}>
+        <label>Frameworks</label>
+        <InputControl
+          placeholder="Enter frameworks"
+          value={values.frameworks}
+          onChange={(event) =>
+            setValues((prev) => ({ ...prev, frameworks: event.target.value }))
+          }
+        />
+      </div>
+      <div className={styles.column}>
+        <label>Platforms</label>
+        <InputControl
+          placeholder="Enter platforms"
+          value={values.platforms}
+          onChange={(event) =>
+            setValues((prev) => ({ ...prev, platforms: event.target.value }))
+          }
+        />
+      </div>
+      <div className={styles.column}>
+        <label>Tools</label>
+        <InputControl
+          placeholder="Enter tools"
+          value={values.tools}
+          onChange={(event) =>
+            setValues((prev) => ({ ...prev, tools: event.target.value }))
+          }
+        />
+      </div>
+      <div className={styles.column}>
+        <label>Soft Skills</label>
+        <InputControl
+          placeholder="Enter soft skills"
+          value={values.softSkills}
+          onChange={(event) =>
+            setValues((prev) => ({ ...prev, softSkills: event.target.value }))
+          }
+        />
+      </div>
     </div>
   );
   const otherBody = (
@@ -344,8 +394,8 @@ function Editor(props) {
         return educationBody;
       case sections.achievement:
         return achievementsBody;
-      case sections.summary:
-        return summaryBody;
+      case sections.skillsSummary:
+        return skillsSummaryBody;
       case sections.other:
         return otherBody;
       default:
@@ -425,10 +475,11 @@ function Editor(props) {
           college: values.college,
           startDate: values.startDate,
           endDate: values.endDate,
+          courses: values.courses,
         };
         const tempDetails = [...information[sections.education]?.details];
         tempDetails[activeDetailIndex] = tempDetail;
-
+      
         props.setInformation((prev) => ({
           ...prev,
           [sections.education]: {
@@ -452,14 +503,22 @@ function Editor(props) {
         }));
         break;
       }
-      case sections.summary: {
-        const tempDetail = values.summary;
-
+      case sections.skillsSummary: {
+        const tempLanguages = values.languages;
+        const tempFrameworks = values.frameworks;
+        const tempPlatforms = values.platforms;
+        const tempTools = values.tools;
+        const tempSoftSkills = values.softSkills;
+  
         props.setInformation((prev) => ({
           ...prev,
-          [sections.summary]: {
-            ...prev[sections.summary],
-            detail: tempDetail,
+          [sections.skillsSummary]: {
+            ...prev[sections.skillsSummary],
+            languages: tempLanguages,
+            frameworks: tempFrameworks,
+            platforms: tempPlatforms,
+            tools: tempTools,
+            softSkills: tempSoftSkills,
             sectionTitle,
           },
         }));

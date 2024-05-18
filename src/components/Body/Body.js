@@ -4,6 +4,7 @@ import { ArrowDown } from "react-feather";
 
 import Editor from "../Editor/Editor";
 import Resume from "../Resume/Resume";
+import ContactMe from "../ContactMe/ContactMe";  // Importing the ContactMe component
 
 import styles from "./Body.module.css";
 
@@ -11,11 +12,11 @@ function Body() {
   const colors = ["#239ce2", "#48bb78", "#0bc5ea", "#a0aec0", "#ed8936"];
   const sections = {
     basicInfo: "Basic Info",
+    education: "Education",
+    skillsSummary: "Skills Summary",
     workExp: "Work Experience",
     project: "Projects",
-    education: "Education",
     achievement: "Achievements",
-    summary: "Summary",
     other: "Other",
   };
   const resumeRef = useRef();
@@ -47,10 +48,14 @@ function Body() {
       sectionTitle: sections.achievement,
       points: [],
     },
-    [sections.summary]: {
-      id: sections.summary,
-      sectionTitle: sections.summary,
-      detail: "",
+    [sections.skillsSummary]: {
+      id: sections.skillsSummary,
+      sectionTitle: sections.skillsSummary,
+      languages: "",
+      frameworks: "",
+      platforms: "",
+      tools: "",
+      softSkills: "",
     },
     [sections.other]: {
       id: sections.other,
@@ -98,6 +103,7 @@ function Body() {
           information={resumeInformation}
           activeColor={activeColor}
         />
+        <ContactMe />  {/* Added ContactMe component */}
       </div>
     </div>
   );

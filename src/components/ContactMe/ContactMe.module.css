@@ -1,0 +1,33 @@
+.container {
+  background-color: #87ceeb; /* Sky blue background */
+  color: white; /* White font color */
+  padding: 20px;
+  text-align: center;
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 300px; /* Spacing between links */
+}
+
+.links a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.links svg {
+  margin-right: 10px;
+}
